@@ -41,7 +41,8 @@ namespace Appointment
         }
         private void jonne()
         {
-            Test.Text = "nigger";
+            Form form = new  Home();
+            
         }
 
         private void label1_Click(object sender, EventArgs e)

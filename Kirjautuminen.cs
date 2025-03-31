@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace Appointment
 {
-    public partial class Kirjautuminen: Form
+    public partial class Kirjautuminen : Form
     {
         public Kirjautuminen()
         {
             InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

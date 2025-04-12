@@ -14,7 +14,9 @@ namespace Appointment
     {
         public Kirjautuminen()
         {
+            this.WindowState = FormWindowState.Maximized;
             InitializeComponent();
+            this.AcceptButton = button1; // Enter = kirjaudu
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -38,11 +40,12 @@ namespace Appointment
             string password = textBox2.Text;
 
             // yksinkertainen tunnisuts (voit korvata tietokannalla)
-            if(username == "admin" && password == "admin")
+            if (username == "admin" && password == "admin")
             {
+                Point loginSijainti = this.Location;
 
                 // Piilotetaan kirjautumissivu ja avataan varasulomake
-                Form1 varausFormi = new Form1();
+                Form1 varausFormi = new Form1(loginSijainti);
                 this.Hide();
                 varausFormi.ShowDialog();
                 this.Close(); // Sulkee kirjautumisikkunan, kun varus suljetaan
@@ -72,6 +75,11 @@ namespace Appointment
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Kirjautuminen_Load(object sender, EventArgs e)
         {
 
         }

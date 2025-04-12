@@ -98,6 +98,7 @@
             Controls.Add(label1);
             Name = "Kirjautuminen";
             Text = "Kirjautuminen";
+            Load += Kirjautuminen_Load;
             ResumeLayout(false);
             PerformLayout();
         }

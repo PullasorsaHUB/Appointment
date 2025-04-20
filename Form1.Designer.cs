@@ -56,7 +56,7 @@
             // 
             // button1
             // 
-            button1.Font = new Font("JetBrains Mono", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.Location = new Point(911, 363);
             button1.Name = "button1";
             button1.Size = new Size(135, 40);
@@ -68,10 +68,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Space Mono", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.Location = new Point(842, 94);
             label1.Name = "label1";
-            label1.Size = new Size(204, 28);
+            label1.Size = new Size(151, 24);
             label1.TabIndex = 3;
             label1.Text = "Valitse palvelu:";
             label1.Click += label1_Click;
@@ -89,10 +89,10 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Space Mono", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.Location = new Point(569, 94);
             label2.Name = "label2";
-            label2.Size = new Size(168, 28);
+            label2.Size = new Size(121, 24);
             label2.TabIndex = 5;
             label2.Text = "Valitse aika:";
             label2.Click += label2_Click;

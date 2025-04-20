@@ -47,7 +47,6 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Parturi", "Hieronta", "Solarium" });
             comboBox1.Location = new Point(842, 157);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(204, 23);
@@ -79,7 +78,6 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00" });
             comboBox2.Location = new Point(569, 157);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(204, 23);

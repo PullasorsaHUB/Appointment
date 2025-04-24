@@ -14,7 +14,6 @@ namespace Appointment
     {
         public Kirjautuminen()
         {
-            this.WindowState = FormWindowState.Maximized;
             InitializeComponent();
             this.AcceptButton = button1; // Enter = kirjaudu
         }

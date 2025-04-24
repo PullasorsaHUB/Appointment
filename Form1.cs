@@ -1,4 +1,6 @@
 using System.Linq;
+using System.IO;
+using System.Text.Json;
 
 namespace Appointment
 {
@@ -6,6 +8,7 @@ namespace Appointment
     {
         private List<AjanVaraukset> varatutAjat = new List<AjanVaraukset>();
         private ListViewItem muokattavaItem = null;
+        private string tiedostoPolku = "varaukset.json";
         public Form1(Point location)
         {
             InitializeComponent();
@@ -14,6 +17,7 @@ namespace Appointment
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            LataaVaraukset();
             AlustaPalvelu();
             PaivitaAikaValinnat();
             AlustaListView();
@@ -39,7 +43,7 @@ namespace Appointment
 
             public override string ToString()
             {
-                return $" Aika: {Aika}, Palvelu: {Palvelu}";
+                return $"{Aika:dd.MM.yyyy HH:mm} - {Palvelu}";
             }
         }
 
@@ -80,7 +84,30 @@ namespace Appointment
             }
         }
 
+        private void TallennaVaraukset()
+        {
+            var json = JsonSerializer.Serialize(varatutAjat);
+            File.WriteAllText(tiedostoPolku, json);
+        }
 
+        private void LataaVaraukset()
+        {
+            if(File.Exists(tiedostoPolku))
+            {
+                var json = File.ReadAllText(tiedostoPolku);
+                varatutAjat = JsonSerializer.Deserialize<List<AjanVaraukset>>(json) ?? new List<AjanVaraukset>();
+
+                foreach (var varaus in varatutAjat)
+                {
+                    if(varaus.Aika > DateTime.Now)
+                    {
+                        ListViewItem item = new ListViewItem(varaus.Aika.ToString("dd.MM.yyyy HH:mm"));
+                        item.SubItems.Add(varaus.Palvelu);
+                        listView1.Items.Add(item);
+                    }
+                }
+            }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -144,6 +171,7 @@ namespace Appointment
                 MessageBox.Show($"Aika {aikaObjekti:dd.MM.yyyy HH:mm} varattu palvelulle: {valittuPalvelu}", "Varaus onnistui", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             comboBox2.Items.Remove(valittuAika);
+            TallennaVaraukset();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -219,6 +247,7 @@ namespace Appointment
                 PaivitaAikaValinnat();
                 MessageBox.Show("Varaus poistettu.");
             }
+            TallennaVaraukset();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -251,7 +280,7 @@ namespace Appointment
             comboBox2.SelectedItem = klo;
             comboBox1.SelectedItem = palvelu;
 
-            MessageBox.Show("Muokkaa varattua aikaa samoista lokeroista mist‰ valitsit aikasi ja palvelun t‰m‰n j‰lkeen kun olet vaihtanut 'ajan tai palvelun' paina varaa nappia.",
+            MessageBox.Show("Muokkaa varattua aikaa samoista lokeroista mist‰ valitsit aikasi ja palvelun t‰m‰n j‰lkeen kun olet vaihtanut 'P‰iv‰m‰‰r‰n, ajan tai palvelun' paina varaa nappia.",
                 "Muokkaustila",
                 MessageBoxButtons.OK,
                 MessageBoxIcon.Information);

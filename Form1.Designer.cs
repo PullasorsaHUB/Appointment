@@ -37,6 +37,7 @@
             listView1 = new ListView();
             button2 = new Button();
             label3 = new Label();
+            button3 = new Button();
             SuspendLayout();
             // 
             // monthCalendar1
@@ -110,12 +111,13 @@
             // button2
             // 
             button2.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button2.Location = new Point(93, 794);
+            button2.Location = new Point(234, 794);
             button2.Name = "button2";
             button2.Size = new Size(135, 40);
             button2.TabIndex = 7;
             button2.Text = "Poista";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // label3
             // 
@@ -128,12 +130,24 @@
             label3.Text = "Varatut ajat:";
             label3.Click += label3_Click;
             // 
+            // button3
+            // 
+            button3.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button3.Location = new Point(93, 794);
+            button3.Name = "button3";
+            button3.Size = new Size(135, 40);
+            button3.TabIndex = 9;
+            button3.Text = "Muokkaa";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
             ClientSize = new Size(1294, 919);
+            Controls.Add(button3);
             Controls.Add(label3);
             Controls.Add(button2);
             Controls.Add(listView1);
@@ -162,5 +176,6 @@
         private ListView listView1;
         private Button button2;
         private Label label3;
+        private Button button3;
     }
 }

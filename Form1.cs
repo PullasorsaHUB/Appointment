@@ -86,7 +86,6 @@ namespace Appointment
             string valittuAika = comboBox2.SelectedItem?.ToString();
             string valittuPalvelu = comboBox1.SelectedItem?.ToString();
 
-
             if (string.IsNullOrEmpty(valittuAika) || string.IsNullOrEmpty(valittuPalvelu))
             {
                 MessageBox.Show("Valitse sekä aika että palvelu.", "Virhe", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -98,18 +97,28 @@ namespace Appointment
             if (varatutAjat.Contains(varaus))
             {
                 MessageBox.Show("Tämä aika on jo varattu!", "Varoitus", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Jos muokkaus kesken
+            if (muokattavaItem != null)
+            {
+                muokattavaItem.SubItems[0].Text = varaus;
+                muokattavaItem.SubItems[1].Text = valittuPalvelu;
+                muokattavaItem = null; // Nollaa tila
+                MessageBox.Show("Varaus päivitetty onnistuneesti!");
             }
             else
             {
                 varatutAjat.Add(varaus);
-                comboBox2.Items.Remove(valittuAika); // Poistetaan valittu aika comboboxista
-
                 ListViewItem item = new ListViewItem(varaus);
                 item.SubItems.Add(valittuPalvelu);
                 listView1.Items.Add(item);
 
-                MessageBox.Show($"Aika {valittuPvm} {valittuAika} varattu palvelulle: {valittuPalvelu}", "Varaus onnistui", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Aika {varaus} varattu palvelulle: {valittuPalvelu}", "Varaus onnistui", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            comboBox2.Items.Remove(valittuAika);
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -186,7 +195,42 @@ namespace Appointment
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if(listView1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("Valitse varaus muokattavaksi");
+                return;
+            }
 
+            muokattavaItem = listView1.SelectedItems[0];
+
+            string aika = muokattavaItem.SubItems[0].Text;
+            string palvelu = muokattavaItem.SubItems[1].Text;
+
+            // valitut tiedot comboboxiin
+
+            string[] osat = aika.Split(' ');
+            string pvm = osat[0];
+            string klo = osat[1];
+
+            // Valitse päivä kalenterista (jos eri päivä)
+            monthCalendar1.SetDate(DateTime.Parse(pvm));
+            PaivitaAikaValinnat(); // Päivittää vapaat ajat
+
+            // Jos aika ei ole enää vapaa, silti lisätään comboboxiin tilapäisesti
+            if(!comboBox2.Items.Contains(klo))
+                comboBox2.Items.Add(klo);
+
+            comboBox2.SelectedItem = klo;
+            comboBox1.SelectedItem = palvelu;
+
+            // Poistetaan vanha aika ja palvelu varatuista -> vapautetaan muokattavaksi
+            varatutAjat.Remove(aika);
+            comboBox2.Items.Add(klo); // Varmistetaan että aika näkyy valinnoissa
+
+            MessageBox.Show("Muokkaa varattua aikaa samoista lokeroista mistä valitsit aikasi ja palvelun tämän jälkeen kun olet vaihtanut 'ajan tai palvelun' paina varaa nappia.",
+                "Muokkaustila",
+                MessageBoxButtons.OK,
+                MessageBoxIcon.Information);
         }
     }
 }

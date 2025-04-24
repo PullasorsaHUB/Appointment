@@ -5,7 +5,7 @@ namespace Appointment
     public partial class Form1 : Form
     {
         private List<string> varatutAjat = new List<string>();
-        public Form1( Point location )
+        public Form1(Point location)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.Manual;
@@ -20,7 +20,7 @@ namespace Appointment
         private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
         {
             PaivitaAikaValinnat();
-        }   
+        }
 
         private void AlustaPalvelu()
         {
@@ -57,7 +57,7 @@ namespace Appointment
             string valittuPvm = monthCalendar1.SelectionStart.ToShortDateString();
             // 2. Ottaa käyttäjän valitseman päivän kalenterista
 
-            string[] kaikkiAjat = { "09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00" };
+            string[] kaikkiAjat = { "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00" };
             // 3. Lista kaikista mahdollisista varattavista ajoista
 
             foreach (string aika in kaikkiAjat)
@@ -96,7 +96,7 @@ namespace Appointment
             {
                 MessageBox.Show("Tämä aika on jo varattu!", "Varoitus", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            else 
+            else
             {
                 varatutAjat.Add(varaus);
                 comboBox2.Items.Remove(valittuAika); // Poistetaan valittu aika comboboxista
@@ -108,7 +108,7 @@ namespace Appointment
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Mihin paikkaan varataan (Palvelu/service)
-            
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -122,6 +122,22 @@ namespace Appointment
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        /// <summary>
+        /// Näkee kaikki varatut-ajat Lista
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }

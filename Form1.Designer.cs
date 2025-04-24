@@ -34,6 +34,9 @@
             label1 = new Label();
             comboBox2 = new ComboBox();
             label2 = new Label();
+            listView1 = new ListView();
+            button2 = new Button();
+            label3 = new Label();
             SuspendLayout();
             // 
             // monthCalendar1
@@ -95,12 +98,45 @@
             label2.Text = "Valitse aika:";
             label2.Click += label2_Click;
             // 
+            // listView1
+            // 
+            listView1.Location = new Point(93, 522);
+            listView1.Name = "listView1";
+            listView1.Size = new Size(402, 266);
+            listView1.TabIndex = 6;
+            listView1.UseCompatibleStateImageBehavior = false;
+            listView1.SelectedIndexChanged += listView1_SelectedIndexChanged;
+            // 
+            // button2
+            // 
+            button2.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button2.Location = new Point(93, 794);
+            button2.Name = "button2";
+            button2.Size = new Size(135, 40);
+            button2.TabIndex = 7;
+            button2.Text = "Poista";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(93, 472);
+            label3.Name = "label3";
+            label3.Size = new Size(119, 24);
+            label3.TabIndex = 8;
+            label3.Text = "Varatut ajat:";
+            label3.Click += label3_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(1207, 614);
+            ClientSize = new Size(1294, 919);
+            Controls.Add(label3);
+            Controls.Add(button2);
+            Controls.Add(listView1);
             Controls.Add(label2);
             Controls.Add(comboBox2);
             Controls.Add(label1);
@@ -123,5 +159,8 @@
         private Label label1;
         private ComboBox comboBox2;
         private Label label2;
+        private ListView listView1;
+        private Button button2;
+        private Label label3;
     }
 }
